@@ -25,3 +25,28 @@ class Game(models.Model):
     date = models.DateField()
 
 
+class Stadium(models.Model):
+    title = models.CharField()
+    seats = models.IntegerField()
+    field_width = models.FloatField()
+    field_length = models.FloatField()
+    history = models.TextField()
+
+    class Meta:
+        app_label = 'tournament'
+
+
+class Coach(models.Model):
+    name = models.CharField(max_length=48)
+    experience = models.IntegerField()
+    team = models.CharField()
+
+
+class Hotel(models.Model):
+    title = models.CharField()
+    location = models.CharField()
+    rating = models.FloatField()
+    stars = models.IntegerField()
+
+    class Meta:
+        app_label = 'hotels'
