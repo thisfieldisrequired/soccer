@@ -1,23 +1,23 @@
 from django.db import models
 
 
-class DayWeateher(models.Model):
-    date = models.DateField()
-    precipitation = models.FloatField()
-    temperature = models.FloatField()
-    was_raining = models.BooleanField()
+class Author(models.Model):
+    name = models.CharField(max_length=100)
+    age = models.IntegerField()
 
-
-class House(models.Model):
-    apartments = models.IntegerField()
-    house_number = models.IntegerField()
-    street = models.CharField(max_length=64)
-
+class Publisher(models.Model):
+    name = models.CharField(max_length=300)
 
 class Book(models.Model):
-    title = models.CharField(max_length=30)
-    author = models.CharField(max_length=30)
-    pages_count = models.IntegerField()
-    genre = models.CharField(max_length=30)
-    book_cost = models.DecimalField(max_digits=6, decimal_places=2)
-    status = models.CharField(max_length=30)
+    name = models.CharField(max_length=300)
+    pages = models.IntegerField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    rating = models.FloatField()
+    authors = models.ManyToManyField(Author)
+    publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE)
+    pubdate = models.DateField()
+
+class Store(models.Model):
+    name = models.CharField(max_length=300)
+    books = models.ManyToManyField(Book)
+
