@@ -21,3 +21,5 @@ class Store(models.Model):
     name = models.CharField(max_length=300)
     books = models.ManyToManyField(Book)
 
+
+
