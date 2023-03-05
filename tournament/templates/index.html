@@ -1,4 +1,12 @@
-<h4>{{ song.artist }} - {{ song.title }}</h4>
-<audio controls>
-    <source src="/static/{{ song.path_to_file }}" type="audio/mp3">
-</audio>
+{% for song in songs %}
+<div>
+   <h4>{{ song.artist }} - {{ song.title }}</h4>
+   <div>Loved by: {{ song.favorite_by.all|slice:5|unordered_list }}</div>
+</div>
+{% endfor %}
+
+<form action="/add_to_favorites" method="post">
+   {% csrf_token %}
+   <input type="hidden" name="song_id" value="{{ song.id }}">
+   <button type="submit">Add to favorites</button>
+</form>
