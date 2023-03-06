@@ -3,10 +3,9 @@ from django.db import models
 
 class User(models.Model):
     id = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=33)
+    name = models.TextField()
 
-
-class Pet(models.Model):
+class MobilePhone(models.Model):
     id = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=7)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='mypets')
+    phone = models.CharField(max_length=10)
+    owner = models.OneToOneField(User, on_delete=models.CASCADE, related_name='myphone')
