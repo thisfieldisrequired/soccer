@@ -1,9 +1,12 @@
 from django.db import models
-from django.contrib.auth.models import User
 
 
-class Song(models.Model):
-    title = models.CharField(max_length=128)
-    artist = models.CharField(max_length=128)
-    path_to_file = models.FileField(upload_to='static/')
-    favorite_by = models.ManyToManyField(User, related_name='favourite_songs')
+class User(models.Model):
+    id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=33)
+
+
+class Pet(models.Model):
+    id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=7)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='mypets')
